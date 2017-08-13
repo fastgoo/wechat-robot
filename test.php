@@ -7,5 +7,5 @@
  */
 $key = !empty($_GET['app_id']) ? $_GET['app_id'] : 123456;
 
-exec('php server.php ' . $key);
+exec('php run.php start ' . $key);
 

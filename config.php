@@ -9,9 +9,10 @@ return [
      * swoole 配置项（执行主动发消息命令必须要开启，且必须安装 swoole 插件）
      */
     'swoole'  => [
-        'status' => true,
+        'workNum'=> 2,
+        /*'status' => true,
         'ip'     => '127.0.0.1',
-        'port'   => '8867',
+        'port'   => '8868',*/
     ],
     /*
      * 下载配置项

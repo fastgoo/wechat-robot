@@ -17,9 +17,9 @@ class Server
 {
     private $server;
     private $key;
-    public function __construct($arg)
+    public function __construct($arg,$config)
     {
-        $config = require_once "./config.php";
+
         $this->server = new Vbot($config);
         $this->key = !empty($arg['2'])?$arg['2']:'123456';
     }
@@ -75,7 +75,3 @@ class Server
     }
 
 }
-
-$vbot = new Server($argv);
-
-$vbot->start();
