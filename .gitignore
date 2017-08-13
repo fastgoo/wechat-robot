@@ -1,4 +1,5 @@
 /vendor/
+/Log/
 /.idea
 /Resources/
 composer.lock

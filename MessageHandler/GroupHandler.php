@@ -12,6 +12,13 @@ use Hanson\Vbot\Message\Text;
 
 class GroupHandler extends Main
 {
+    /**
+     * 优先检测群组的名称定为来源
+     * 监听群组的人员变更，开启了新人加入消息提醒，同时提醒内容不为空那么就会触发自动回复欢迎新人的消息
+     * 同时监听文字消息的，默认开启@我，搜人、踢人等等命令系统会自动做出指定的操作
+     * @param $message
+     * @param $data
+     */
     public function handler($message, $data)
     {
         $groupData = $data->getGroupByNickname($message['from']['NickName']);

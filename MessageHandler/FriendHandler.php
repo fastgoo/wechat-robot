@@ -10,10 +10,15 @@ namespace WechatRobot\MessageHandler;
 
 class FriendHandler extends Main
 {
+    /**
+     * 私人消息自动匹配对应的用户的指令库
+     * 如果指令匹配直接返回指定指令的回复操作
+     * @param $message
+     * @param $data
+     */
     public function handler($message,$data)
     {
         $reply = $data->getFriendReplyByCommand($message['content']);
-        vbot('console')->log(json_encode($reply));
         if($reply){
             $this->replay($reply['reply'],$reply['type']);
         }
