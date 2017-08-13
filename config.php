@@ -1,6 +1,8 @@
 <?php
 $path = __DIR__.'/./../tmp/';
 
+define('APPPATH',__DIR__);
+
 return [
     'path'     => $path,
     /*
@@ -9,7 +11,7 @@ return [
     'swoole'  => [
         'status' => true,
         'ip'     => '127.0.0.1',
-        'port'   => '8866',
+        'port'   => '8867',
     ],
     /*
      * 下载配置项

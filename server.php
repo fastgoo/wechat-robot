@@ -16,17 +16,18 @@ use WechatRobot\MessageHandler\Main;
 class Server
 {
     private $server;
-
-    public function __construct()
+    private $key;
+    public function __construct($arg)
     {
         $config = require_once "./config.php";
         $this->server = new Vbot($config);
+        $this->key = !empty($arg['2'])?$arg['2']:'123456';
     }
 
     public function start()
     {
         $this->server->messageHandler->setHandler(function (Collection $message){
-            Main::messageHandler($message);
+            Main::messageHandler($message,$this->key);
         });
 
         // 获取监听器实例
@@ -36,6 +37,8 @@ class Server
          * 获取二维码扫码监听器
          */
         $observer->setQrCodeObserver(function($qrCodeUrl){
+            $qrCodeUrl = str_replace('https://login.weixin.qq.com/l','https://login.weixin.qq.com/qrcode',$qrCodeUrl);
+            (new Main())->logger($qrCodeUrl);
             echo $qrCodeUrl;
         });
 
@@ -73,6 +76,6 @@ class Server
 
 }
 
-$vbot = new Server();
+$vbot = new Server($argv);
 
 $vbot->start();
