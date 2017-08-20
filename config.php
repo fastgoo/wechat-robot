@@ -1,7 +1,7 @@
 <?php
 $path = __DIR__.'/./../tmp/';
 
-define('APPPATH',__DIR__);
+define('APPPATH', __DIR__);
 
 return [
     'path'     => $path,
@@ -66,6 +66,14 @@ return [
                 'port'     => 6379,
                 'database' => 13,
             ],
+        ],
+        'mysql' => [
+          'host' => '118.89.159.190',
+          'username' => 'root',
+          'password' => 'jungege520',
+          'dbname' => 'wechat-robot',
+          'port' => 3306,
+          'charset' => 'utf8',
         ],
     ],
     /*
