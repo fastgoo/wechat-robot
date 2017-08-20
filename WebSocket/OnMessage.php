@@ -94,7 +94,7 @@ class OnMessage
             if (filter_var($msg, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED)) {
                 $self->pushMessage('getQrcode', '获取到二维码数据', ['url'=>$msg]);
             }
-            echo "RECV: " . $msg.PHP_EOL;
+            //echo "RECV: " . $msg.PHP_EOL;
         });
     }
 
