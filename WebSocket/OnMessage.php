@@ -79,6 +79,9 @@ class OnMessage
         $process = new \Swoole\Process(function () use ($self) {
             global $config;
             $server = new \WechatRobot\MessageHandler\Server($config, $self->userData->app_id);
+            $server->setLoginSuccessCallback(function () use ($self) {
+                $self->pushMessage('loginSuccess', '机器人登录成功');
+            });
             $server->start();
         }, true);
         swoole_set_process_name('wechat-robot-'.$this->userData->app_id);
@@ -143,7 +146,7 @@ class OnMessage
      * @param  array   $data [数据]
      * @return [type]        [description]
      */
-    private function pushMessage($code=1, $msg='', $data = array())
+    public function pushMessage($code=1, $msg='', $data = array())
     {
         $resutl = [
           'code'=>$code,

@@ -15,6 +15,7 @@ class Server
 {
     private $server;
     private $key;
+    private $loginSuccess;
     public function __construct($config, $appId = '123456')
     {
         $this->server = new Vbot($config);
@@ -49,7 +50,8 @@ class Server
          * 登录成功监听器
          */
         $observer->setLoginSuccessObserver(function () {
-            echo "登录成功了";
+            $call = $this->loginSuccess;
+            $call();
         });
 
         /**
@@ -73,5 +75,10 @@ class Server
         });
 
         $this->server->server->serve();
+    }
+
+    public function setLoginSuccessCallback($callback)
+    {
+        $this->loginSuccess = $callback;
     }
 }
