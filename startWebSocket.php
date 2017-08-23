@@ -30,11 +30,6 @@ $ws->on('open', function ($ws, $request) use ($connect) {
 
 //监听WebSocket消息事件
 $ws->on('message', function ($ws, $frame) use ($message) {
-    \Swoole\Process::signal(SIGCHLD, function ($sig) {
-        while ($ret = \Swoole\Process::wait(false)) {
-            var_dump($ret);
-        }
-    });
     $message->handler($frame);
 });
 

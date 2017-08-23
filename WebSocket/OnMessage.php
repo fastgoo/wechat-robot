@@ -77,6 +77,11 @@ class OnMessage
         $self = $this;
         /** 实例化已经进程服务，用于启动监听机器人 */
         $process = new \Swoole\Process(function () use ($self) {
+            \Swoole\Process::signal(SIGCHLD, function ($sig) {
+                while ($ret = \Swoole\Process::wait(false)) {
+                    var_dump($ret);
+                }
+            });
             global $config;
             $server = new \WechatRobot\MessageHandler\Server($config, $self->userData->app_id);
             $server->setLoginSuccessCallback(function () use ($self) {
@@ -104,12 +109,16 @@ class OnMessage
      */
     private function verifyServerAndClearProcess()
     {
-        $pid = $this->cache->get("process.pid.{$this->userData->app_id}");
-        if (!empty($pid)) {
-            $flag = \Swoole\Process::kill($pid);
-            var_dump("清除进程-{$pid},状态：{$flag}");
-            $this->cache->delete("process.pid.{$this->userData->app_id}");
-        }
+        $process_name = 'wechat-robot-'.$this->userData->app_id;
+        exec("ps -ef|grep {$process_name} | awk '{print $2}' | xargs kill -9");
+        // $pid = $this->cache->get("process.pid.{$this->userData->app_id}");
+        // if (!empty($pid)) {
+        //     //$flag = \Swoole\Process::kill($pid);
+        //     $process_name = 'wechat-robot-'.$this->userData->app_id;
+        //     exec("ps -ef|grep {$process_name} | awk '{print $2}' | xargs kill -9");
+        //     //var_dump("清除进程-{$pid},状态：{$flag}");
+        //     $this->cache->delete("process.pid.{$this->userData->app_id}");
+        // }
     }
 
     /**
@@ -119,7 +128,7 @@ class OnMessage
      */
     private function setServerProcess($pid, $process)
     {
-        $this->cache->set("process.pid.{$this->userData->app_id}", $pid);
+        //$this->cache->set("process.pid.{$this->userData->app_id}", $pid);
     }
 
     /**
