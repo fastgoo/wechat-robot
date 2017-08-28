@@ -77,11 +77,11 @@ class OnMessage
         $self = $this;
         /** 实例化已经进程服务，用于启动监听机器人 */
         $process = new \Swoole\Process(function () use ($self) {
-            \Swoole\Process::signal(SIGCHLD, function ($sig) {
-                while ($ret = \Swoole\Process::wait(false)) {
-                    var_dump($ret);
-                }
-            });
+            // \Swoole\Process::signal(SIGCHLD, function ($sig) {
+            //     while ($ret = \Swoole\Process::wait(false)) {
+            //         var_dump($ret);
+            //     }
+            // });
             global $config;
             $server = new \WechatRobot\MessageHandler\Server($config, $self->userData->app_id);
             $server->setLoginSuccessCallback(function () use ($self) {
