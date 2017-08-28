@@ -14,8 +14,7 @@ class AdminData
 
     public function __construct($app_id = 123456)
     {
-        global $config;
-        $redisCache = new \Predis\Client($config['database']['redis']['default']);
+        $redisCache = new \Predis\Client();
         $data = $redisCache->get($app_id);
         $data = '{"group":[{"id":"2","app_id":"123456","group_name":"\u6d4b\u8bd5Robot","is_at":"1","is_like":"1","is_search":"1","is_kick":"1","is_welcome_msg":"1","welcome_msg":"\u6b22\u8fce\u65b0\u4eba{nickname} \u52a0\u5165\u6d4b\u8bd5Robot","is_auto_add":"1","auth_key":"\u6d4b\u8bd5Robot","new_friend_msg":"\u8fdb\u5165\u6d4b\u8bd5Robot\u7fa4\u5427","status":"1","create_time":"0","update_time":"0","command":[]},{"id":"1","app_id":"123456","group_name":"Robot","is_at":"1","is_like":"1","is_search":"1","is_kick":"1","is_welcome_msg":"1","welcome_msg":"\u6b22\u8fce\u65b0\u4eba{nickname}\uff0c\u52a0\u5165\u6211\u4eecRobot\u5927\u5bb6\u5ead","is_auto_add":"1","auth_key":"123","new_friend_msg":"\u6765\u5427\uff0c\u8fdb\u7fa4\u5427","status":"1","create_time":"0","update_time":"0","command":[{"type":"1","command":"\u6d4b\u8bd52","reply":"{\"text\":\"2-666\"}"},{"type":"1","command":"\u6d4b\u8bd51","reply":"{\"text\":\"1-666\"}"}]}],"friend":[{"auth_key":"3","welcome_msg":"\u6b22\u8fce\u65b0\u4eba3"},{"auth_key":"2","welcome_msg":"\u6b22\u8fce\u65b0\u4eba2"},{"auth_key":"1","welcome_msg":"\u6b22\u8fce\u65b0\u4eba1"}],"commands":[{"type":"1","command":"\u6d4b\u8bd53","reply":"{\"text\":\"3-666\"}"},{"type":"1","command":"\u6d4b\u8bd52","reply":"{\"text\":\"2-666\"}"},{"type":"1","command":"\u6d4b\u8bd5","reply":"{\"text\":\"1-666\"}"}]}';
         //print_r($data);

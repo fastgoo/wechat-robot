@@ -61,14 +61,14 @@ return [
         'redis' => [
             'client'  => 'predis',
             'default' => [
-                'host'     => '127.0.0.1',
-                'password' => null,
+                'host'     => '39.108.134.88',
+                'password' => 'Mr.Zhou',
                 'port'     => 6379,
                 'database' => 13,
             ],
         ],
         'mysql' => [
-          'host' => '118.89.159.190',
+          'host' => '39.108.134.88',
           'username' => 'root',
           'password' => 'jungege520',
           'dbname' => 'wechat-robot',

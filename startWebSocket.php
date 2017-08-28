@@ -11,7 +11,7 @@ $ws = new swoole_websocket_server("0.0.0.0", 9502);
 
 $ws->set(array(
     'worker_num' => 4,
-    'daemonize' => true,
+    //'daemonize' => true,
     'backlog' => 128,
 ));
 
